@@ -1,4 +1,4 @@
-package com.protasenya.cryptocurrencyWatcher;
+package com.protasenya.cryptoCurrencyWatcher;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
