@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -18,6 +19,10 @@ public class CryptoCurrency {
 
     @Id
     private Long id;
+
+    @Column(name = "symbol", nullable = false, length = 60)
     private String symbol;
+
+    @Column(name = "price_usd", nullable = false)
     private BigDecimal priceUSD;
 }
