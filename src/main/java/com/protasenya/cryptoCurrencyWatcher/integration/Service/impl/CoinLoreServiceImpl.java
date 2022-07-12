@@ -25,7 +25,7 @@ public class CoinLoreServiceImpl implements CoinLoreService {
         String id = requestId.stream().map(String::valueOf)
                 .collect(Collectors.joining(","));
         List<CoinDto> resultCoins = apiClient.findCoinsById(id);
-        log.info("Coin Lore response={}", resultCoins);
+        log.debug("Coin Lore response={}", resultCoins);
 
         return resultCoins;
     }

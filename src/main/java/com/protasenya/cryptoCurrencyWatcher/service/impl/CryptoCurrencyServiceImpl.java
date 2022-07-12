@@ -3,6 +3,7 @@ package com.protasenya.cryptoCurrencyWatcher.service.impl;
 import com.protasenya.cryptoCurrencyWatcher.domain.dto.CryptoCurrencyDto;
 import com.protasenya.cryptoCurrencyWatcher.domain.mapper.CryptoCurrencyMapper;
 import com.protasenya.cryptoCurrencyWatcher.domain.model.CryptoCurrency;
+import com.protasenya.cryptoCurrencyWatcher.exception.ResourceNotFoundException;
 import com.protasenya.cryptoCurrencyWatcher.integration.CoinLoreDto.CoinDto;
 import com.protasenya.cryptoCurrencyWatcher.integration.CoinLoreDto.CoinLoreRequest;
 import com.protasenya.cryptoCurrencyWatcher.integration.Service.CoinLoreService;
@@ -33,9 +34,13 @@ public class CryptoCurrencyServiceImpl implements CryptoCurrencyService {
 
     @Override
     public CryptoCurrencyDto getPrice(String symbol) {
-        log.debug("Get cryptocurrency price with symbol={}", symbol);
-        CryptoCurrency cryptoCurrency = cryptoCurrencyRepository.findBySymbol(symbol);
-        return cryptoCurrencyMapper.toDto(cryptoCurrency);
+        if (cryptoCurrencyRepository.existsBySymbol(symbol)) {
+            log.debug("Get cryptocurrency price with symbol={}", symbol);
+            CryptoCurrency cryptoCurrency = cryptoCurrencyRepository.findBySymbol(symbol);
+            return cryptoCurrencyMapper.toDto(cryptoCurrency);
+        } else {
+            throw new ResourceNotFoundException("CryptoCurrency with symbol " + symbol + " not found.");
+        }
     }
 
     @Override

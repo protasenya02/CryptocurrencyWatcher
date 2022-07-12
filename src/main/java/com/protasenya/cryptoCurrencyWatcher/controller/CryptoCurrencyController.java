@@ -24,7 +24,8 @@ public class CryptoCurrencyController {
     }
 
     @GetMapping("/price")
-    public ResponseEntity<CryptoCurrencyDto> getCryptoCurrencyPrice(@NotNull @RequestParam("symbol") String symbol) {
+    public ResponseEntity<CryptoCurrencyDto> getCryptoCurrencyPrice(
+            @NotNull @RequestParam("symbol") String symbol) {
         CryptoCurrencyDto cryptoCurrencyDto = cryptoCurrencyService.getPrice(symbol);
         return ResponseEntity.ok(cryptoCurrencyDto);
     }

@@ -1,4 +1,4 @@
-package com.protasenya.cryptoCurrencyWatcher.Controller;
+package com.protasenya.cryptoCurrencyWatcher.controller;
 
 
 import com.protasenya.cryptoCurrencyWatcher.CryptocurrencyWatcherApplication;
