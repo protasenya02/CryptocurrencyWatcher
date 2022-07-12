@@ -21,7 +21,7 @@ public class CoinLoreServiceImpl implements CoinLoreService {
     @Override
     public List<CoinDto> getCoinsById(CoinLoreRequest apiRequest) {
         List<Long> requestId = apiRequest.getId();
-        log.info("Integration with Coin Lore API was started. Get coins with id={}", requestId);
+        log.debug("Integration with Coin Lore API was started. Get coins with id={}", requestId);
         String id = requestId.stream().map(String::valueOf)
                 .collect(Collectors.joining(","));
         List<CoinDto> resultCoins = apiClient.findCoinsById(id);

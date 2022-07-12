@@ -10,6 +10,7 @@ import com.protasenya.cryptoCurrencyWatcher.repository.CryptoCurrencyRepository;
 import com.protasenya.cryptoCurrencyWatcher.service.CryptoCurrencyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class CryptoCurrencyServiceImpl implements CryptoCurrencyService {
     }
 
     @Override
+    @Scheduled(fixedRate = 60000)
     public void updateCryptocurrenciesPrice() {
         List<Long> id = cryptoCurrencyRepository.findAll().stream()
                 .map(CryptoCurrency::getId).collect(Collectors.toList());
