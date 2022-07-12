@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.List;
+
 @Validated
 @Repository
 public interface CryptoCurrencyRepository extends JpaRepository<CryptoCurrency, Integer> {

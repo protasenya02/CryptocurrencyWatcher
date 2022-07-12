@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class CoinLoreRequest {
-    private List<Integer> ids;
+    private List<Long> id;
 }
 
 

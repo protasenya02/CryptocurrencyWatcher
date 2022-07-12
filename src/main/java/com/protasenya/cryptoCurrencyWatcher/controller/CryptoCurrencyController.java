@@ -1,7 +1,6 @@
 package com.protasenya.cryptoCurrencyWatcher.controller;
 
 import com.protasenya.cryptoCurrencyWatcher.domain.dto.CryptoCurrencyDto;
-import com.protasenya.cryptoCurrencyWatcher.integration.CoinLoreDto.Coin;
 import com.protasenya.cryptoCurrencyWatcher.requestMapping.Mapping;
 import com.protasenya.cryptoCurrencyWatcher.service.CryptoCurrencyService;
 import com.sun.istack.NotNull;
@@ -29,11 +28,4 @@ public class CryptoCurrencyController {
         CryptoCurrencyDto cryptoCurrencyDto = cryptoCurrencyService.getPrice(symbol);
         return ResponseEntity.ok(cryptoCurrencyDto);
     }
-
-    @GetMapping("/integration")
-    public ResponseEntity<Coin> getCoins() {
-       Coin coins = cryptoCurrencyService.updateCryptocurrenciesPrice();
-        return ResponseEntity.ok(coins);
-    }
-
 }
