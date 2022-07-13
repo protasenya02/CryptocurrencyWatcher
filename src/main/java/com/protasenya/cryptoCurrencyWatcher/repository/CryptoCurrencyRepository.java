@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CryptoCurrencyRepository extends JpaRepository<CryptoCurrency, Long> {
 
-    CryptoCurrency findBySymbol(String symbol);
+    CryptoCurrency findBySymbol(String symbol);         //TODO: return optional
 
     boolean existsBySymbol(String symbol);
 }

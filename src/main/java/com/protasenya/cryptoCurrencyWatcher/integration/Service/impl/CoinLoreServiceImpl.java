@@ -22,16 +22,20 @@ public class CoinLoreServiceImpl implements CoinLoreService {
 
     @Override
     public List<CoinDto> getCoinsById(List<Long> requestId) {
-        log.debug("Integration with Coin Lore API was started. Get coins with id={}", requestId);
-        String id = requestId.stream().map(String::valueOf)
-                .collect(Collectors.joining(","));
-        List<CoinDto> resultCoins = apiClient.findCoinsById(id);
-        if (resultCoins.isEmpty()) {
-            throw new ResourceNotFoundException
-                    ("Coin Lore did not find response for request " + requestId + ".");
+        try {
+            log.info("Integration with Coin Lore API was started. Get coins with id={}", requestId);
+            String id = requestId.stream().map(String::valueOf)
+                    .collect(Collectors.joining(","));
+            List<CoinDto> resultCoins = apiClient.findCoinsById(id);
+            if (resultCoins.isEmpty()) {
+                throw new ResourceNotFoundException
+                        ("Coin Lore did not find response for request " + requestId + ".");
+            }
+            log.info("Coin Lore response={}", resultCoins);
+            return resultCoins;
+        } catch (RuntimeException e)  {
+            throw new RuntimeException(e);
         }
-        log.debug("Coin Lore response={}", resultCoins);
-        return resultCoins;
     }
 
     @Override

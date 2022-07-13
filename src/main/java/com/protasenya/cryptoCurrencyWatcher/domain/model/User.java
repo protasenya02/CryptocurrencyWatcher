@@ -1,6 +1,5 @@
 package com.protasenya.cryptoCurrencyWatcher.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,7 +22,7 @@ public class User {
     private String username;
 
     @ManyToOne
-    @JoinColumn(name = "cryptocurrency_id",referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "cryptocurrency_id", referencedColumnName = "id", nullable = false)
     private CryptoCurrency cryptoCurrency;
 
     @Column(name = "coin_price_per_registration", nullable = false)

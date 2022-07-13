@@ -1,12 +1,12 @@
 package com.protasenya.cryptoCurrencyWatcher.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -25,6 +25,6 @@ public class CryptoCurrency {
     @Column(name = "price_usd", nullable = false)
     private BigDecimal priceUSD;
 
-    @OneToMany(mappedBy = "cryptoCurrency")
-    private Set<User> users = new HashSet<>();
+    @OneToMany(mappedBy = "cryptoCurrency", fetch = FetchType.EAGER)
+    private List<User> users = new ArrayList<>();
 }
