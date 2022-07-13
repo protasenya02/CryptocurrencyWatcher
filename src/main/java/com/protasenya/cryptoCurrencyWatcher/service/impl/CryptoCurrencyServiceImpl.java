@@ -79,13 +79,11 @@ public class CryptoCurrencyServiceImpl implements CryptoCurrencyService {
 
     @Override
     public CryptoCurrencyDto findBySymbol(String symbol) {
-        if (cryptoCurrencyRepository.existsBySymbol(symbol)) {
             log.debug("Get cryptocurrency with symbol={}", symbol);
-            CryptoCurrency cryptoCurrency = cryptoCurrencyRepository.findBySymbol(symbol);
-            return cryptoCurrencyMapper.toDto(cryptoCurrency);
-        } else {
-            throw new ResourceNotFoundException("CryptoCurrency with symbol " + symbol + " not found.");
-        }
+            CryptoCurrency currency = cryptoCurrencyRepository.findBySymbol(symbol)
+                    .orElseThrow(() ->
+                            new ResourceNotFoundException("CryptoCurrency with symbol " + symbol + " not found."));
+            return cryptoCurrencyMapper.toDto(currency);
     }
 
     @Override

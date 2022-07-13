@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto notifyUser(UserCreateDto userDto) {
         if (!userRepository.existsByUsername(userDto.getUsername())) {
+            log.debug("Create user: " + userDto);
             User user = userMapper.fromDto(userDto);
             String symbol = userDto.getCoinSymbol();
             CryptoCurrencyDto currencyDto = cryptoCurrencyService.findBySymbol(symbol);

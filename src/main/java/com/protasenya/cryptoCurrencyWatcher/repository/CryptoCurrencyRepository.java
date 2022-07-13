@@ -4,10 +4,10 @@ import com.protasenya.cryptoCurrencyWatcher.domain.model.CryptoCurrency;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface CryptoCurrencyRepository extends JpaRepository<CryptoCurrency, Long> {
 
-    CryptoCurrency findBySymbol(String symbol);         //TODO: return optional
-
-    boolean existsBySymbol(String symbol);
+    Optional<CryptoCurrency> findBySymbol(String symbol);
 }
