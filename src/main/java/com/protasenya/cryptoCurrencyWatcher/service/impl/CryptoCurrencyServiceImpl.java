@@ -22,6 +22,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CryptoCurrencyServiceImpl implements CryptoCurrencyService {
 
+    private static final int PRICE_UPDATE_RATE = 60000;
+
     private final CryptoCurrencyRepository cryptoCurrencyRepository;
     private final CryptoCurrencyMapper cryptoCurrencyMapper;
     private final CoinLoreService coinLoreService;
@@ -39,7 +41,7 @@ public class CryptoCurrencyServiceImpl implements CryptoCurrencyService {
     }
 
     @Override
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = PRICE_UPDATE_RATE)
     public void updateCryptocurrenciesPrice() {
         List<Long> id = cryptoCurrencyRepository.findAll().stream()
                 .map(CryptoCurrency::getId).collect(Collectors.toList());

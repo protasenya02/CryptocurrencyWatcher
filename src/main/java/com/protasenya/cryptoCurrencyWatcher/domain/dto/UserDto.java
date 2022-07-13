@@ -1,5 +1,6 @@
 package com.protasenya.cryptoCurrencyWatcher.domain.dto;
 
+import com.protasenya.cryptoCurrencyWatcher.domain.model.CryptoCurrency;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -8,6 +9,6 @@ import java.math.BigDecimal;
 public class UserDto {
     private Long id;
     private String username;
-    private String coinSymbol;
     private BigDecimal coinPricePerRegistration;
+    private CryptoCurrency cryptoCurrency;
 }

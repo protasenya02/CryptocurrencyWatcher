@@ -1,16 +1,15 @@
 package com.protasenya.cryptoCurrencyWatcher.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "cryptocurrencies")
 @AllArgsConstructor
@@ -25,4 +24,7 @@ public class CryptoCurrency {
 
     @Column(name = "price_usd", nullable = false)
     private BigDecimal priceUSD;
+
+    @OneToMany(mappedBy = "cryptoCurrency")
+    private Set<User> users = new HashSet<>();
 }

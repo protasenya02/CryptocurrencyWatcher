@@ -1,7 +1,9 @@
 package com.protasenya.cryptoCurrencyWatcher.service.impl;
 
+import com.protasenya.cryptoCurrencyWatcher.domain.dto.CryptoCurrencyDto;
 import com.protasenya.cryptoCurrencyWatcher.domain.dto.UserCreateDto;
 import com.protasenya.cryptoCurrencyWatcher.domain.dto.UserDto;
+import com.protasenya.cryptoCurrencyWatcher.domain.mapper.CryptoCurrencyMapper;
 import com.protasenya.cryptoCurrencyWatcher.domain.mapper.UserMapper;
 import com.protasenya.cryptoCurrencyWatcher.domain.model.User;
 import com.protasenya.cryptoCurrencyWatcher.exception.ResourceAlreadyExistsException;
@@ -22,12 +24,16 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final CryptoCurrencyService cryptoCurrencyService;
+    private final CryptoCurrencyMapper currencyMapper;
 
     @Override
     public UserDto notifyUser(UserCreateDto userDto) {
         if (!userRepository.existsByUsername(userDto.getUsername())) {
             User user = userMapper.fromDto(userDto);
-            BigDecimal price = cryptoCurrencyService.getPriceFromCoinLore(userDto.getCoinSymbol());
+            String symbol = userDto.getCoinSymbol();
+            CryptoCurrencyDto currencyDto = cryptoCurrencyService.findBySymbol(symbol);
+            user.setCryptoCurrency(currencyMapper.fromDto(currencyDto));
+            BigDecimal price = cryptoCurrencyService.getPriceFromCoinLore(symbol);
             user.setCoinPricePerRegistration(price);
             User createdUser = userRepository.save(user);
 

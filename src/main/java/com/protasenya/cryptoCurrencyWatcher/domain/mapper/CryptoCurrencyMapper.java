@@ -15,4 +15,6 @@ public interface CryptoCurrencyMapper {
     List<CryptoCurrencyDto> toDto(List<CryptoCurrency> coins);
 
     List<CryptoCurrency> fromCoinDto(List<CoinDto> coinDtos);
+
+    CryptoCurrency fromDto(CryptoCurrencyDto currencyDto);
 }

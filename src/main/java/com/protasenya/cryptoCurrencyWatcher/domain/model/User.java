@@ -1,13 +1,13 @@
 package com.protasenya.cryptoCurrencyWatcher.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
@@ -22,8 +22,9 @@ public class User {
     @Column(name = "username", nullable = false, length = 60)
     private String username;
 
-    @Column(name = "coin_symbol", nullable = false, length = 60)
-    private String coinSymbol;
+    @ManyToOne
+    @JoinColumn(name = "cryptocurrency_id",referencedColumnName = "id", nullable = false)
+    private CryptoCurrency cryptoCurrency;
 
     @Column(name = "coin_price_per_registration", nullable = false)
     private BigDecimal coinPricePerRegistration;
