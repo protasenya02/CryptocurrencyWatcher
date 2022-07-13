@@ -27,9 +27,10 @@ public class UserServiceImpl implements UserService {
     public UserDto notifyUser(UserCreateDto userDto) {
         if (!userRepository.existsByUsername(userDto.getUsername())) {
             User user = userMapper.fromDto(userDto);
-            BigDecimal price = cryptoCurrencyService.getPrice(userDto.getCoinSymbol()).getPriceUSD();
+            BigDecimal price = cryptoCurrencyService.getPriceFromCoinLore(userDto.getCoinSymbol());
             user.setCoinPricePerRegistration(price);
             User createdUser = userRepository.save(user);
+
             return userMapper.fromDto(createdUser);
         } else {
             throw new ResourceAlreadyExistsException("User " + userDto.getUsername() + " already exists.");

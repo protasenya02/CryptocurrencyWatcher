@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -24,9 +25,9 @@ public class CryptoCurrencyController {
     }
 
     @GetMapping("/price")
-    public ResponseEntity<CryptoCurrencyDto> getCryptoCurrencyPrice(
+    public ResponseEntity<BigDecimal> getCryptoCurrencyPrice(
             @NotNull @RequestParam("symbol") String symbol) {
-        CryptoCurrencyDto cryptoCurrencyDto = cryptoCurrencyService.getPrice(symbol);
-        return ResponseEntity.ok(cryptoCurrencyDto);
+        BigDecimal price = cryptoCurrencyService.getPrice(symbol);
+        return ResponseEntity.ok(price);
     }
 }

@@ -1,4 +1,4 @@
-package com.protasenya.cryptoCurrencyWatcher.integration.CoinLoreDto;
+package com.protasenya.cryptoCurrencyWatcher.integration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

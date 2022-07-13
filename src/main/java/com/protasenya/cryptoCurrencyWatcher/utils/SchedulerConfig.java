@@ -1,4 +1,4 @@
-package com.protasenya.cryptoCurrencyWatcher.util;
+package com.protasenya.cryptoCurrencyWatcher.utils;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
